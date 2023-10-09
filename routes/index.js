@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const CreateCustomerMessage = require("../controllers/customerMessage").default
+const CreateCustomerMessage = require("../controllers/CustomerMessage")
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
