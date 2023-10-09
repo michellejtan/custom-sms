@@ -6,6 +6,7 @@ import './App.css';
  
 function App() {
 
+  //notes
   const [phoneNumber, setPhoneNumber] =useState("");
   const [message, setMessage] =useState("");
 
