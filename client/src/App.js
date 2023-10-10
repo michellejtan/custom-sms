@@ -29,6 +29,10 @@ function App() {
        <input value={phoneNumber} placeholder='###-###-#####' onChange={updatePhoneNumber}></input>
        <p>Message</p>
        <input value={message} placeholder='Enter a message!' onChange={updateMessage}></input>
+      <div>
+      <button>Send</button>
+      </div>
+      
       </header>
     </div>
   );
