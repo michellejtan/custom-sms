@@ -21,5 +21,13 @@ const CreateCustomerMessage = async(req, res) => {
     res.status(200).send("Successfully saved!");
     // res.send({Response: 200});
 };
+const getCustomerMessage = async (req, res) =>{
+    const response = await CustomerMessage.findAll();
 
-module.exports = CreateCustomerMessage;
+    return res.status(200).send(response);
+}; //export after, and put in index.js route
+
+module.exports = {
+    CreateCustomerMessage,
+    getCustomerMessage
+};
