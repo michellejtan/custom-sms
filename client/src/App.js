@@ -33,7 +33,7 @@ function App() {
     // collect the data from the State
     // send the data to the backend
 
-    axios.post("http://localhost:3001/create-customer-text",{
+    axios.post("http://localhost:3000/create-customer-text",{
       // axios.post("http://localhost:3000/create-customer-text",{
       phoneNumber:phoneNumberState,
       message:messageState
