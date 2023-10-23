@@ -26,6 +26,14 @@ function App() {
     .catch((e)=> {console.log(e);})
   }, []); //from response into, use setSentMessage
 
+  const retrieveMessages = async()=>{
+    // console.log("CALLING USEEFFECT:::");
+    await axios.get("http://localhost:3000/customer-texts")
+    .then((response)=>{
+      setSentMessage(response.data);
+    });
+  };
+
   // get the value that was typed!
   const updatePhoneNumber = (e) => {
     console.log({value:e.target.value});
@@ -57,6 +65,7 @@ function App() {
       // console.log(response);
       console.log("MESSAGE RETURNED: ", response.data);
       setSuccessfullResponse(response.data);
+      retrieveMessages();
     })
     .catch((e) =>{
       setError(e.message);
