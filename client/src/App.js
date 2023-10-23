@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
@@ -11,8 +11,20 @@ function App() {
   // Memory Storage
   const [phoneNumberState, setPhoneNumber] =useState("");
   const [messageState, setMessage] =useState("");
-  const[error, setError] =useState("null");
-  const[successfullResponse, setSuccessfullResponse] =useState("null");
+  const[error, setError] =useState(null);
+  const[successfullResponse, setSuccessfullResponse] =useState(null);
+  const[sentMessage,setSentMessage]= useState([]);
+
+  // IF don't put empty array, get call everytime 
+  useEffect(()=>{
+    // console.log("CALLING USEEFFECT:::");
+    axios.get("http://localhost:3000/customer-texts")
+    .then((response)=>{
+      // console.log(response.data);
+      setSentMessage(response.data);
+    })
+    .catch((e)=> {console.log(e);})
+  }, []); //from response into, use setSentMessage
 
   // get the value that was typed!
   const updatePhoneNumber = (e) => {
@@ -55,6 +67,24 @@ function App() {
 
   // get all the messages
 
+
+  //iteration over the array
+  const renderMessage= () =>{
+    return sentMessage.map((message, index) =>{
+      console.log({message});
+      return(
+        // empty Fragment, JS doesn't let you return 3 nodes at the same level
+        <>
+        <div> Record: {index}</div>
+        <ol>
+      <li> Message: {message.message}</li>
+      <li> Phone Number: {message.phoneNumber}</li>
+      <li> Sent Date: {message.createdAt}</li>
+      </ol>
+      </>
+      )
+    });
+  };
   //do the same thing[const unas, or function]
   //function submit() {}
   return (
@@ -70,7 +100,13 @@ function App() {
       <div>
       <button onClick={()=>submitText()}>Send</button>
       </div>
-      
+      <div>
+
+        <h1>Sent Messages:</h1>
+        <div>{ /* Show the list of the message */}</div>
+        <div>{ renderMessage() }</div>
+
+      </div>
       </header>
     </div>
   );
