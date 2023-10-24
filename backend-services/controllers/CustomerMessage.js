@@ -1,5 +1,8 @@
 'use strict'
 // var express = require('express')
+const twilio = require('twilio');
+require('dotenv').config();
+
 const {CustomerMessage} = require("../models");
 
 // GET THE INFORMATION FROM ROUTES, AND PARSE IT, save to model
@@ -21,6 +24,20 @@ const CreateCustomerMessage = async(req, res) => {
     res.status(200).send("Successfully saved!");
     // res.send({Response: 200});
 };
+
+
+console.log("SECRET KEY::::," app)
+const accountSid = process.env.TWILIO_ACCOUNT_SID; 
+const authToken = process.env.TWILIO_AUTH_TOKEN;  
+
+const client = new twilio(accountSid, authToken);
+
+client.messages.create({
+    body: 'Ahoy, friend!',
+    to: '+<YOUR_PHONE_NUMBER>', 
+    from: '+<YOUR_TWILIO_NUMBER>' 
+})
+.then((message) => console.log(message.sid));
 const getCustomerMessage = async (req, res) =>{
     const response = await CustomerMessage.findAll();
 
