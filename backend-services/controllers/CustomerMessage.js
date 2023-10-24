@@ -26,16 +26,16 @@ const CreateCustomerMessage = async(req, res) => {
 };
 
 
-console.log("SECRET KEY::::," app)
+// console.log("SECRET KEY::::," accountSid)
 const accountSid = process.env.TWILIO_ACCOUNT_SID; 
 const authToken = process.env.TWILIO_AUTH_TOKEN;  
 
 const client = new twilio(accountSid, authToken);
 
 client.messages.create({
-    body: 'Ahoy, friend!',
-    to: '+<YOUR_PHONE_NUMBER>', 
-    from: '+<YOUR_TWILIO_NUMBER>' 
+    body: req.body.message,
+    to: req.body.phoneNumber, 
+    from: '+18559275532' 
 })
 .then((message) => console.log(message.sid));
 const getCustomerMessage = async (req, res) =>{
