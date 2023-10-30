@@ -4,7 +4,7 @@ import './App.css';
 import axios from 'axios';
 
 
- 
+// rendering the table, the components to send a text message 
 function App() {
 
   //notes
