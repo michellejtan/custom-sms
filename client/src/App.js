@@ -109,12 +109,24 @@ function App() {
 
   //do the same thing[const unas, or function]
   //function submit() {}
-
+  const renderTableRows=()=>{
+    return sentMessage.map((message) =>{
+    return(
+      <TableRow key={message.phoneNumber+message.message}>
+      <TableCell>{message.phoneNumber}</TableCell>
+      <TableCell align='right'>{message.message}</TableCell>
+      <TableCell align='right'>{message.createdAt}</TableCell>
+      </TableRow>
+    );
+    });
+  };
 
 
 
   return (
     <div className="App">
+      {error && <div>ERROR SENDING THE DATA: {error}</div>}
+      {successfullResponse && <div>The message was {successfullResponse}</div>}
       <Box sx={{}}>
         <h1>Marketing Campaign</h1>
         <Grid container>
@@ -147,7 +159,20 @@ function App() {
               </Grid>
             </Grid>
           </Grid>
-          <Grid xs={7}></Grid>
+          <Grid xs={7}>
+          <TableContainer>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Name</TableCell>
+                  <TableCell align="right">Phone Number</TableCell>
+                  <TableCell align="right">Date Sent</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>{renderTableRows()}</TableBody>
+            </Table>
+          </TableContainer>
+          </Grid>
         </Grid>
       </Box>
 {
@@ -155,7 +180,7 @@ function App() {
 }
       {error && <div>ERROR SENDING THE DATA: {error}</div>}
       {successfullResponse && <div>The message was {successfullResponse}</div>}
-      <header className="App-header">
+      <header >
        <h1>Marketing Campaign</h1>
        <p>Phone number</p>
        <input value={phoneNumberState} placeholder='###-###-#####' onChange={updatePhoneNumber}></input>
