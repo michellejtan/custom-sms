@@ -106,10 +106,53 @@ function App() {
       )
     });
   };
+
   //do the same thing[const unas, or function]
   //function submit() {}
+
+
+
+
   return (
     <div className="App">
+      <Box sx={{}}>
+        <h1>Marketing Campaign</h1>
+        <Grid container>
+          <Grid xs={5}>
+            <Grid container display="flex" flexDirection="column" rowGap={2}>
+              <Grid display="flex">
+                <TextField
+                id="outlined-basic"
+                label="Phone Number"
+                variant="outlined"
+                onChange={updatePhoneNumber}
+                fullWidth
+                />
+              </Grid>
+              <Grid display="flex">
+                <TextField
+                id="outlined-basic"
+                label="Message"
+                variant="outlined"
+                onChange={updateMessage}
+                multiline
+                rows={4}
+                fullWidth
+                />
+              </Grid>
+              <Grid display="flex" justifyContent="flex-end">
+                <Button variant="contained" onClick={()=>submitText()}>
+                  Send message
+                </Button>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid xs={7}></Grid>
+        </Grid>
+      </Box>
+{
+
+}
       {error && <div>ERROR SENDING THE DATA: {error}</div>}
       {successfullResponse && <div>The message was {successfullResponse}</div>}
       <header className="App-header">
