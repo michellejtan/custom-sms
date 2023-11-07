@@ -40,8 +40,8 @@ const MessageTable= () =>{
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell>Name</TableCell>
-                  <TableCell align="right">Phone Number</TableCell>
+                  <TableCell>Phone Number</TableCell>
+                  <TableCell align="right">Message</TableCell>
                   <TableCell align="right">Date Sent</TableCell>
                 </TableRow>
               </TableHead>
