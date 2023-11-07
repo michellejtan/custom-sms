@@ -7,8 +7,8 @@ import axios from 'axios';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+
+import SendMessage from './Components/SendMessage';
 
 
 // rendering the table, the components to send a text message 
@@ -16,8 +16,8 @@ function App() {
 
   //notes
   // Memory Storage
-  const [phoneNumberState, setPhoneNumber] =useState("");
-  const [messageState, setMessage] =useState("");
+  const [phoneNumberState, setPhoneNumber] =useState();
+  const [messageState, setMessage] =useState();
   const[error, setError] =useState(null);
   const[successfullResponse, setSuccessfullResponse] =useState(null);
   const[sentMessage,setSentMessage]= useState([]);
@@ -92,40 +92,14 @@ function App() {
 
   return (
     <div className="App">
-      {error && <div>ERROR SENDING THE DATA: {error}</div>}
-      {successfullResponse && <div>The message was {successfullResponse}</div>}
+    {error && <div>ERROR SENDING THE DATA: {error}</div>}
+    {successfullResponse && <div>The message was {successfullResponse}</div>}
       <Box sx={{}}>
         <h1>Marketing Campaign</h1>
-        <Grid container>
-          <Grid xs={5}>
-            <Grid container display="flex" flexDirection="column" rowGap={2}>
-              <Grid display="flex">
-                <TextField
-                id="outlined-basic"
-                label="Phone Number"
-                variant="outlined"
-                onChange={updatePhoneNumber}
-                fullWidth
-                />
+        <Grid container spacing={1}>
+          <Grid xs={4} spacing={1}>
+            <SendMessage/>              
               </Grid>
-              <Grid display="flex">
-                <TextField
-                id="outlined-basic"
-                label="Message"
-                variant="outlined"
-                onChange={updateMessage}
-                multiline
-                rows={4}
-                fullWidth
-                />
-              </Grid>
-              <Grid display="flex" justifyContent="flex-end">
-                <Button variant="contained" onClick={()=>submitText()}>
-                  Send message
-                </Button>
-              </Grid>
-            </Grid>
-          </Grid>
           <Grid xs={7}>
           <MessageTable/>
 {/* not passing any children */}
