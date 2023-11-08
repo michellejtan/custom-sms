@@ -3,6 +3,7 @@ import axios from "axios";
 import Grid from '@mui/material/Unstable_Grid2';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { Alert, AlertTitle } from "@mui/material";
 
 
 const SendMessage=()=>{
@@ -65,10 +66,12 @@ const SendMessage=()=>{
     });
 };
     return(
-       <> {error && <div>ERROR SENDING THE DATA: {error}</div>}
-       {successfullResponse && <div>The message was {successfullResponse}</div>}
+       <> {error && <Alert severity="error">ERROR SENDING THE DATA: {error}</Alert>}
+       {successfullResponse && <Alert severity="success"><AlertTitle>Success</AlertTitle>The message was {successfullResponse}</Alert>}
+<p></p>
 
-          <Grid container display="flex" flexDirection="column" rowGap={2}>
+
+         <Grid container display="flex" flexDirection="column" rowGap={2}>
             <Grid display="flex">
               <TextField
               id="outlined-basic"
