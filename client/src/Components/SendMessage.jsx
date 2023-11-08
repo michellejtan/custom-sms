@@ -61,7 +61,8 @@ const SendMessage=()=>{
     });
 };
     return(
-
+       <> {error && <div>ERROR SENDING THE DATA: {error}</div>}
+       {successfullResponse && <div>The message was {successfullResponse}</div>}
 
           <Grid container display="flex" flexDirection="column" rowGap={2}>
             <Grid display="flex">
@@ -90,6 +91,7 @@ const SendMessage=()=>{
               </Button>
             </Grid>
           </Grid>
+          </>
     )
 };
 export default SendMessage;

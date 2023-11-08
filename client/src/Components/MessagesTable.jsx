@@ -6,8 +6,10 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import { Button } from '@mui/material';
 
 const MessageTable= () =>{
+
     const[sentMessage,setSentMessage]= useState([]);
 
   // IF don't put empty array, get call everytime 
@@ -34,8 +36,17 @@ const MessageTable= () =>{
     );
     });
   };
-
+  const retrieveMessages= () =>{  
+    axios.get("http://localhost:3000/customer-texts")
+  .then((response)=>{
+    // console.log(response.data);
+    setSentMessage(response.data);
+  })
+  .catch((e)=> {console.log(e);})
+}
     return(
+        <>
+        <Button onClick={retrieveMessages}> Refresh </Button>
 <TableContainer>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
@@ -48,6 +59,7 @@ const MessageTable= () =>{
               <TableBody>{renderTableRows()}</TableBody>
             </Table>
           </TableContainer>
+          </>
     );
 
 

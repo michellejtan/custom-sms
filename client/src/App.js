@@ -92,8 +92,7 @@ function App() {
 
   return (
     <div className="App">
-    {error && <div>ERROR SENDING THE DATA: {error}</div>}
-    {successfullResponse && <div>The message was {successfullResponse}</div>}
+   
       <Box sx={{}}>
         <h1>Marketing Campaign</h1>
         <Grid container spacing={1}>
