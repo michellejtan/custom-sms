@@ -35,9 +35,8 @@ const SendMessage=()=>{
   }
 
   const submitText =()=>{
-    // everytime to click button, send information is gonna reset these 2 fields to an empty value
-    // setError(null);
-    // setSuccessfullResponse(null);
+    setError(null);
+    setSuccessfullResponse(null);
 
     console.log("Button was pressed");
 
@@ -51,10 +50,15 @@ const SendMessage=()=>{
       message:messageState
     })
     .then((response)=>{
+        setPhoneNumber("");
+        setMessage("");
       // console.log(response);
       console.log("MESSAGE RETURNED: ", response.data);
+
       setSuccessfullResponse(response.data);
-      retrieveMessages();
+      // everytime to click button, send information is gonna reset these 2 fields to an empty value
+
+    //   retrieveMessages();
     })
     .catch((e) =>{
       setError(e.message);
@@ -70,6 +74,7 @@ const SendMessage=()=>{
               id="outlined-basic"
               label="Phone Number"
               variant="outlined"
+              value={phoneNumberState}
               onChange={updatePhoneNumber}
               fullWidth
               />
@@ -79,6 +84,7 @@ const SendMessage=()=>{
               id="outlined-basic"
               label="Message"
               variant="outlined"
+              value={messageState}
               onChange={updateMessage}
               multiline
               rows={4}

@@ -26,7 +26,12 @@ const MessageTable= () =>{
   //do the same thing[const unas, or function]
   //function submit() {}
   const renderTableRows=()=>{
-    return sentMessage.map((message) =>{
+
+      // Sort the sentMessage array by createdAt in descending order
+  const sortedMessages = sentMessage.slice().sort((a, b) => {
+    return new Date(b.createdAt) - new Date(a.createdAt);
+  });
+    return sortedMessages.map((message) =>{
     return(
       <TableRow key={message.phoneNumber+message.message}>
       <TableCell>{message.phoneNumber}</TableCell>
