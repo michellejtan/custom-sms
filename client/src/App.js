@@ -1,30 +1,27 @@
-import { Fragment, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import logo from './logo.svg';
+// Importing the new component MessageTable
+import MessageTable from "./Components/MessagesTable";
 import './App.css';
 import axios from 'axios';
 
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Unstable_Grid2';
 
- 
+import SendMessage from './Components/SendMessage';
+
+
+// rendering the table, the components to send a text message 
 function App() {
 
   //notes
   // Memory Storage
-  const [phoneNumberState, setPhoneNumber] =useState("");
-  const [messageState, setMessage] =useState("");
+  const [phoneNumberState, setPhoneNumber] =useState();
+  const [messageState, setMessage] =useState();
   const[error, setError] =useState(null);
   const[successfullResponse, setSuccessfullResponse] =useState(null);
   const[sentMessage,setSentMessage]= useState([]);
 
-  // IF don't put empty array, get call everytime 
-  useEffect(()=>{
-    // console.log("CALLING USEEFFECT:::");
-    axios.get("http://localhost:3000/customer-texts")
-    .then((response)=>{
-      // console.log(response.data);
-      setSentMessage(response.data);
-    })
-    .catch((e)=> {console.log(e);})
-  }, []); //from response into, use setSentMessage
 
   const retrieveMessages = async()=>{
     // console.log("CALLING USEEFFECT:::");
@@ -75,8 +72,6 @@ function App() {
   };
 
   // get all the messages
-
-
   //iteration over the array
   const renderMessage= () =>{
     return sentMessage.map((message, index) =>{
@@ -94,13 +89,28 @@ function App() {
       )
     });
   };
-  //do the same thing[const unas, or function]
-  //function submit() {}
+
   return (
     <div className="App">
+   
+      <Box sx={{}}>
+        <h1>Marketing Campaign</h1>
+        <Grid container spacing={1}>
+          <Grid xs={4} spacing={1}>
+            <SendMessage/>              
+              </Grid>
+          <Grid xs={7}>
+          <MessageTable/>
+{/* not passing any children */}
+          </Grid>
+        </Grid>
+      </Box>
+{
+
+}
       {error && <div>ERROR SENDING THE DATA: {error}</div>}
       {successfullResponse && <div>The message was {successfullResponse}</div>}
-      <header className="App-header">
+      <header >
        <h1>Marketing Campaign</h1>
        <p>Phone number</p>
        <input value={phoneNumberState} placeholder='###-###-#####' onChange={updatePhoneNumber}></input>
